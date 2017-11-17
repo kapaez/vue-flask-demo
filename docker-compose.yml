@@ -1,0 +1,22 @@
+version: "3"
+services:
+    flask-c:
+        image: flaskenv:v1.0
+        volumes:
+            - ../firstdocker:/firstdocker
+        links:
+            - mysql_2:mysql
+        ports:
+            - "5000:5000"
+        entrypoint: /bin/bash
+        stdin_open: true
+        tty: true
+    mysql_2:
+        image: mysql
+        volumes:
+            - /firstdocker/mysqldata2:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: "root123"
+            MYSQL_DATABASE: flask
+
+     
